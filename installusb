@@ -42,7 +42,7 @@ NAME=`basename $0`
 BOX=`cat /proc/stb/info/model`
 #OEVER=`sed -En 's|^imageversion=(.+)$|\1|p' "/usr/lib/enigma.info" | sed -e "s/'*//g"`
 #URL="http://images.mynonpublic.com/openatv/${OEVER}/dream.php?open=${BOX}"
-URL="http://images.mynonpublic.com/openatv/7.3/dream.php?open=${BOX}"
+URL="http://images.mynonpublic.com/openatv/7.4/dream.php?open=${BOX}"
 BOOTNEW=/media/bootnew
 ROOTNEW=/media/rootnew
 
