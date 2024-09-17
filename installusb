@@ -125,9 +125,9 @@ unit: sectors
 #${SELECTDEV}3 : start=     1132544, size=   486291456, type=83
 #EOF
 
-${SELECTDEV}1 : start=2048, size=131072, type=b, bootable
-${SELECTDEV}2 : start=133120, size=1172544, type=0x82
-${SELECTDEV}3 : start=1202544, type=0x83
+${SELECTDEV}1 : start=2048, size=32768, type=b, bootable
+${SELECTDEV}2 : start=34816, size=1048576, type=0x82
+${SELECTDEV}3 : start=1083392, type=0x83
 EOF
 
 
