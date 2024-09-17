@@ -120,16 +120,10 @@ label-id: 0xc041c9d0
 device: /dev/sda
 unit: sectors
 
-#${SELECTDEV}1 : start=        2048, size=      131072, type=c, bootable
-#${SELECTDEV}2 : start=      133120, size=      999424, type=82
-#${SELECTDEV}3 : start=     1132544, size=   486291456, type=83
-#EOF
-
-${SELECTDEV}1 : start=2048, size=32768, type=b, bootable
-${SELECTDEV}2 : start=34816, size=1048576, type=0x82
-${SELECTDEV}3 : start=1083392, type=0x83
+${SELECTDEV}1 : start=        2048, size=      131072, type=c, bootable
+${SELECTDEV}2 : start=      133120, size=      999424, type=82
+${SELECTDEV}3 : start=     1132544, size=   486291456, type=83
 EOF
-
 
 # dream
 #sfdisk --force -uM $BOOTDEV << EOF
