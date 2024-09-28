@@ -1,7 +1,10 @@
 #!/bin/bash
-###################################
-# openATV Dreambox InstallUSB 0.1 #
-###################################
+#######################################################################
+# openATV Dreambox InstallUSB 0.2                                     #
+#URL="http://images.mynonpublic.com/openatv/7.5/dream.php?open=DM500HD#
+#  Credits:                                                           #
+# https://www.opena.tv/viewtopic.php?t=63436                          #
+#######################################################################
 
 # free flash space
 rm -rf /usr/lib/gstreamer-1.0
@@ -42,7 +45,7 @@ NAME=`basename $0`
 BOX=`cat /proc/stb/info/model`
 #OEVER=`sed -En 's|^imageversion=(.+)$|\1|p' "/usr/lib/enigma.info" | sed -e "s/'*//g"`
 #URL="http://images.mynonpublic.com/openatv/${OEVER}/dream.php?open=${BOX}"
-URL="http://images.mynonpublic.com/openatv/7.4/dream.php?open=${BOX}"
+URL="http://images.mynonpublic.com/openatv/7.5/dream.php?open=${BOX}"
 BOOTNEW=/media/bootnew
 ROOTNEW=/media/rootnew
 
