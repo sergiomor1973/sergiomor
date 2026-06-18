@@ -1,8 +1,8 @@
 #!/bin/bash
-echo "#######################################################################"
-echo "openATV Dreambox InstallUSB 0.2                                       #"
-echo "Credits:                                                              #"
-echo "https://www.opena.tv/viewtopic.php?t=63436                            #"
+#echo "#######################################################################"
+#echo "openATV Dreambox InstallUSB 0.2                                       #"
+#echo "Credits:                                                              #"
+#echo "https://www.opena.tv/viewtopic.php?t=63436                            #"
 #echo "#######################################################################"
 
 # free flash space
