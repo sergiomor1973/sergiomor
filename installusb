@@ -46,6 +46,7 @@ BOX=`cat /proc/stb/info/model`
 #URL="http://images.mynonpublic.com/openatv/${OEVER}/dream.php?open=${BOX}"
 
 
+
 echo "Escolha a versão do OpenATV para instalar:"
 echo "1) 7.6"
 echo "2) 8.0"
@@ -54,9 +55,11 @@ read -p "Opção: " opt
 case $opt in
     1)
         VERSAO="7.6"
+        PADRAO="openatv-7.6.0-dm500hd"
         ;;
     2)
         VERSAO="8.0"
+        PADRAO="openatv-8.0.0-beta-dm500hd"
         ;;
     *)
         echo "Opção inválida."
@@ -66,20 +69,31 @@ esac
 
 BASE_URL="https://images.mynonpublic.com/openatv/${VERSAO}/${BOX}/"
 
-# usar curl porque wget é bloqueado
-HTML=$(curl -A "Mozilla/5.0" -s "$BASE_URL")
+# Procurar datas recentes (últimos 30 dias)
+for DIA in $(seq 0 30); do
+    DATA=$(date -d "-$DIA day" +%Y%m%d)
+    ZIP="${PADRAO}-${DATA}_flash.zip"
+    LINK="${BASE_URL}${ZIP}"
 
-ZIP_FILE=$(echo "$HTML" | grep -Eo "openatv-${VERSAO}.*_flash\.zip" | sort | tail -n 1)
+    echo "Testando: $ZIP"
 
-if [ -z "$ZIP_FILE" ]; then
-    echo "Não foi possível encontrar ficheiro ZIP para ${VERSAO}."
+    if wget --spider -U "Mozilla/5.0" "$LINK" 2>&1 | grep -q "200 OK"; then
+        URL="$LINK"
+        break
+    fi
+done
+
+if [ -z "$URL" ]; then
+    echo "Nenhum ficheiro válido encontrado."
     exit 1
 fi
 
-URL="${BASE_URL}${ZIP_FILE}"
-
 echo "Último ficheiro encontrado:"
 echo "$URL"
+
+wget -q -U "Mozilla/13.0 (X11; Linux x86_64; rv:2.0b9pre) Gecko/20230625 Firefox/13.0" -O rootfs.zip "$URL"
+
+
 
 
 
