@@ -3,7 +3,7 @@ echo "#######################################################################"
 echo "openATV Dreambox InstallUSB 0.2                                       #"
 echo "Credits:                                                              #"
 echo "https://www.opena.tv/viewtopic.php?t=63436                            #"
-echo "#######################################################################"
+#echo "#######################################################################"
 
 # free flash space
 rm -rf /usr/lib/gstreamer-1.0
