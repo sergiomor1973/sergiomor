@@ -65,7 +65,7 @@ esac
 
 # Descobrir automaticamente o último ficheiro ZIP
 BASE_URL="https://images.mynonpublic.com/openatv/${VERSAO}/${BOX}/"
-ZIP_URL=$(wget -q -O - "$BASE_URL" | grep -Eo "openatv-${VERSAO}.*_flash\.zip" | sort | tail -n 1)
+ZIP_URL=$(wget -q -U "Mozilla/5.0" -O - "$BASE_URL" | grep -Eo "openatv-${VERSAO}.*_flash\.zip" | sort | tail -n 1)
 
 if [ -z "$ZIP_URL" ]; then
     echo "Não foi possível encontrar ficheiro ZIP para ${VERSAO}."
