@@ -45,6 +45,7 @@ BOX=`cat /proc/stb/info/model`
 #OEVER=`sed -En 's|^imageversion=(.+)$|\1|p' "/usr/lib/enigma.info" | sed -e "s/'*//g"`
 #URL="http://images.mynonpublic.com/openatv/${OEVER}/dream.php?open=${BOX}"
 
+
 echo "Escolha a versão do OpenATV para instalar:"
 echo "1) 7.6"
 echo "2) 8.0"
@@ -63,17 +64,25 @@ case $opt in
         ;;
 esac
 
-# Descobrir automaticamente o último ficheiro ZIP
 BASE_URL="https://images.mynonpublic.com/openatv/${VERSAO}/${BOX}/"
-ZIP_URL=$(wget -q -U "Mozilla/5.0" -O - "$BASE_URL" | grep -Eo "openatv-${VERSAO}.*_flash\.zip" | sort | tail -n 1)
 
-if [ -z "$ZIP_URL" ]; then
+# usar curl porque wget é bloqueado
+HTML=$(curl -A "Mozilla/5.0" -s "$BASE_URL")
+
+ZIP_FILE=$(echo "$HTML" | grep -Eo "openatv-${VERSAO}.*_flash\.zip" | sort | tail -n 1)
+
+if [ -z "$ZIP_FILE" ]; then
     echo "Não foi possível encontrar ficheiro ZIP para ${VERSAO}."
     exit 1
 fi
 
-URL="${BASE_URL}${ZIP_URL}"
-echo "Último ficheiro encontrado: $URL"
+URL="${BASE_URL}${ZIP_FILE}"
+
+echo "Último ficheiro encontrado:"
+echo "$URL"
+
+
+
 BOOTNEW=/media/bootnew
 ROOTNEW=/media/rootnew
 
