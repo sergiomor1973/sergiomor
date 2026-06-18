@@ -1,10 +1,9 @@
 #!/bin/bash
-#######################################################################
-# openATV Dreambox InstallUSB 0.2                                     #
-#URL="http://images.mynonpublic.com/openatv/7.5/dream.php?open=DM500HD#
-#  Credits:                                                           #
-# https://www.opena.tv/viewtopic.php?t=63436                          #
-#######################################################################
+echo "#######################################################################"
+echo "openATV Dreambox InstallUSB 0.2                                       #"
+echo "Credits:                                                              #"
+echo "https://www.opena.tv/viewtopic.php?t=63436                            #"
+echo "#######################################################################"
 
 # free flash space
 rm -rf /usr/lib/gstreamer-1.0
@@ -64,9 +63,17 @@ case $opt in
         ;;
 esac
 
-URL="https://images.mynonpublic.com/openatv/index.php?v=${VERSAO}&open=${BOX}"
+# Descobrir automaticamente o último ficheiro ZIP
+BASE_URL="https://images.mynonpublic.com/openatv/${VERSAO}/${BOX}/"
+ZIP_URL=$(wget -q -O - "$BASE_URL" | grep -Eo "openatv-${VERSAO}.*_flash\.zip" | sort | tail -n 1)
 
-#URL="http://images.mynonpublic.com/openatv/7.5/dream.php?open=${BOX}"
+if [ -z "$ZIP_URL" ]; then
+    echo "Não foi possível encontrar ficheiro ZIP para ${VERSAO}."
+    exit 1
+fi
+
+URL="${BASE_URL}${ZIP_URL}"
+echo "Último ficheiro encontrado: $URL"
 BOOTNEW=/media/bootnew
 ROOTNEW=/media/rootnew
 
